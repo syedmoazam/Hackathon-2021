@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Delivery Application</title>
+  <link rel="stylesheet" href="../style.css">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+</head>
+
+<body onload="customerOrders()">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><i class="bi bi-person-square text-light fs-2"></i></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active text-light" href="#">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="customerRestaurant.html">Restaurants</a>
+          </li>
+          <li class="nav-item">
+            <p class="nav-link bg-warning text-dark mx-5" id="userName"></p>
+          </li>
+          <li class="nav-item">
+            <button onclick="logout()" class=" nav-link btn btn-danger text-light">Logout</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <!-- BreadCrumbs -->
+    <nav aria-label="breadcrumb" class="mt-4">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+        <li class="breadcrumb-item">
+          <select class="form-select form-select-sm ms-3" id="dashboardBread" onchange="customerOrders()"
+            aria-label="Default select example">
+            <option value="Pending">Pending</option>
+            <option value="Accepted">Accepted</option>
+            <option value="Rejected">Rejected</option>
+            <option value="Delivered">Delivered</option>
+          </select>
+        </li>
+      </ol>
+    </nav>
+    <div class="row justify-content-center" id="orders">
+      <div class="table-responsive col-12" style="overflow-x: hidden;">
+        <table class="table bg-light table-striped table-hover">
+          <thead class="bg-dark text-light">
+            <tr>
+              <th>No.</th>
+              <th>Restaurants</th>
+              <th>Items</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Status</th>
+              <th>Total Amount</th>
+            </tr>
+          </thead>
+          <tbody id="customerData">
+            <tr>
+              <td>1</td>
+              <td><strong>Restaurant Name</strong>
+              </td>
+              <td>
+                <strong>Item Name</strong>
+              </td>
+              <td>Item Price</td>
+              <td>Item Quantity</td>
+              <td>Item Status</td>
+              <td>Total Amount</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+  <!-- Bootstap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+    crossorigin="anonymous"></script>
+  <!-- Firebase Api -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <!-- <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script> -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyBa37tiCfuMTxH4l1pr83XW1VVzlvJJR00",
+      authDomain: "food-delivery-hackathon.firebaseapp.com",
+      projectId: "food-delivery-hackathon",
+      storageBucket: "food-delivery-hackathon.appspot.com",
+      messagingSenderId: "847904717168",
+      appId: "1:847904717168:web:edbd876fb03020daf677b5",
+      measurementId: "G-G7E9BHK2F8"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  <!-- Javascript -->
+  <script src="app.js"></script>
+  <script src="dashboard.js"></script>
+  <script>
+    let customerSignIn = localStorage.getItem("customerSignIn");
+    customerSignIn = JSON.parse(customerSignIn);
+    if (!customerSignIn) {
+      location.replace("index.html");
+    }
+  </script>
+</body>
+
+</html>

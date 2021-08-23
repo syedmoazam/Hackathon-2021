@@ -1,0 +1,15 @@
+#dashboardBread{
+    position: relative !important;
+    top: -24px;
+}
+
+#resSignup{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+body{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-image:url(Restaurant/images/jimmy-dean-Yn0l7uwBrpw-unsplash.jpg);
+}
